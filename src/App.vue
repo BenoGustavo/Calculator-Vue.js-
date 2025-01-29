@@ -1,26 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <CalculatorView :buttonMapping="buttonMapping" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import CalculatorView from "./view/CalculatorView.vue";
 
 export default {
   name: "App",
+  data() {
+    return {
+      buttonMapping: [
+        ["CE", "C", "%", "÷"],
+        ["7", "8", "9", "×"],
+        ["4", "5", "6", "-"],
+        ["1", "2", "3", "+"],
+        ["+/-", "0", ".", "="],
+      ],
+    };
+  },
   components: {
-    HelloWorld,
+    CalculatorView,
   },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import "./assets/css/variables.css";
+@import "./assets/css/remedy.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+  font-family: Rubik, sans-serif;
+  background-color: var(--main-bg-color);
+  height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
