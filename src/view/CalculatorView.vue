@@ -52,24 +52,24 @@ export default {
         },
 
         addToDisplay(value) {
-            console.log("Essa equação é válida? " + Validator.isValidEquation(this.equationActualValue) +
-                "\n" + "O valor atual é: " + this.equationActualValue + "\n" + "O valor que foi clicado é: " + value);
+            // console.log("Essa equação é válida? " + Validator.isValidEquation(this.equationActualValue) +
+            //"\n" + "O valor atual é: " + this.equationActualValue + "\n" + "O valor que foi clicado é: " + value);
 
             if (Validator.isEqualsPressed(value) &&
                 Validator.isValidEquation(this.equationActualValue)) {
-                console.log("Equação é valida e o botão de igual foi apertado: " + this.equationActualValue);
+                // console.log("Equação é valida e o botão de igual foi apertado: " + this.equationActualValue);
                 this.evaluateEquation();
                 return;
             }
 
             if (Validator.isClearAllPressed(value)) {
-                console.log("O botão de clear foi apertado portanto a calculadora foi resetada");
+                // console.log("O botão de clear foi apertado portanto a calculadora foi resetada");
                 this.reset();
                 return;
             }
 
             if (Validator.isClearPressed(value)) {
-                console.log("O botão de deletar foi apertado o ultimo digito do display foi deletado");
+                // console.log("O botão de deletar foi apertado o ultimo digito do display foi deletado");
                 this.equationActualValue = this.equationActualValue.slice(0, -1);
 
                 if (this.equationActualValue === "") {
@@ -81,20 +81,20 @@ export default {
 
             if (value === '.' &&
                 Validator.isDisplayEmpty(this.equationActualValue)) {
-                console.log("O display estava vazio e o usuario tentou colocar um ponto portanto o valor foi adicionado: " + value);
+                // console.log("O display estava vazio e o usuario tentou colocar um ponto portanto o valor foi adicionado: " + value);
                 this.equationActualValue = "0" + value;
                 return;
             }
 
             if (Validator.isDisplayEmpty(this.equationActualValue) &&
                 Validator.isValidNumber(value)) {
-                console.log("O display estava vazio portanto o valor foi adicionado: " + value);
+                // console.log("O display estava vazio portanto o valor foi adicionado: " + value);
                 this.equationActualValue = value;
                 return;
             }
 
             if (Validator.isValidNumber(value)) {
-                console.log("O valor é um número válido portanto foi adicionado: " + value);
+                // console.log("O valor é um número válido portanto foi adicionado: " + value);
                 this.equationActualValue += value;
                 return;
             }
@@ -102,11 +102,11 @@ export default {
             if (Validator.isEquationInverterPressed(value) &&
                 !Validator.isDisplayEmpty(this.equationActualValue) &&
                 !Validator.doesEquationContainOperator(this.equationActualValue, this.operators)) {
-                console.log("O botão de inverter sinal foi apertado portanto o sinal do display foi invertido");
+                // console.log("O botão de inverter sinal foi apertado portanto o sinal do display foi invertido");
 
-                console.log(this.equationActualValue);
+                // console.log(this.equationActualValue);
                 this.equationActualValue = (this.equationActualValue * -1).toString();
-                console.log(this.equationActualValue);
+                // console.log(this.equationActualValue);
                 return;
             }
 
@@ -115,7 +115,7 @@ export default {
 
                 let valueAfterOperator = this.equationActualValue.split(/[-+×÷]/).slice(-1)[0];
 
-                console.log("O valor após o operador é: " + valueAfterOperator);
+                // console.log("O valor após o operador é: " + valueAfterOperator);
 
                 if (valueAfterOperator === "") {
                     let lastChar = this.equationActualValue.slice(-1);
@@ -126,21 +126,21 @@ export default {
                     } else if (lastChar === '-') {
                         this.equationActualValue = this.equationActualValue.slice(0, -1) + '+';
                     }
-                    console.log("O botão de inverter sinal foi apertado e o valor após o operador é vazio portanto o sinal do display foi invertido");
+                    // console.log("O botão de inverter sinal foi apertado e o valor após o operador é vazio portanto o sinal do display foi invertido");
                     return;
                 }
 
                 let lastChar = this.equationActualValue.slice(-1);
                 let firstChar = this.equationActualValue.slice(0, 1);
                 if (['-', '+', '×', '÷'].includes(lastChar)) {
-                    console.log("O botão de inverter sinal foi apertado e o valor após o operador é um número portanto o sinal do display foi invertido");
+                    // console.log("O botão de inverter sinal foi apertado e o valor após o operador é um número portanto o sinal do display foi invertido");
                     this.equationActualValue = this.equationActualValue.slice(0, -1) + (lastChar === '-' ? '+' : '-');
                 } else if (['-', '+', '×', '÷'].includes(firstChar)) {
-                    console.log("O botão de inverter sinal foi apertado e o valor após o operador é um número portanto o sinal do display foi invertido 1");
+                    // console.log("O botão de inverter sinal foi apertado e o valor após o operador é um número portanto o sinal do display foi invertido 1");
                     this.equationActualValue = (firstChar === '-' ? '+' : '-') + this.equationActualValue.slice(1);
 
                 } else {
-                    console.log("O botão de inverter sinal foi apertado e o valor após o operador é um número portanto o sinal do display foi invertido 2");
+                    // console.log("O botão de inverter sinal foi apertado e o valor após o operador é um número portanto o sinal do display foi invertido 2");
                     let lastNumber = parseFloat(valueAfterOperator);
                     if (isNaN(lastNumber)) {
                         return;
@@ -153,7 +153,7 @@ export default {
 
             if (!Validator.isLastCharOperator(this.equationActualValue, this.operators) &&
                 !Validator.isDisplayEmpty(this.equationActualValue)) {
-                console.log("O ultimo caractere não é um operador portanto o valor foi adicionado: " + value);
+                // console.log("O ultimo caractere não é um operador portanto o valor foi adicionado: " + value);
                 this.equationActualValue += value;
                 return;
             }
